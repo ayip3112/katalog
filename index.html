@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Produk - ALFARIZKI PERFUME GALLERY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: #000;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .header .contact-info {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .header .contact-info a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+            padding-bottom: 2px;
+            transition: all 0.3s;
+        }
+
+        .header .contact-info a:hover {
+            border-bottom-color: white;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #000;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            font-size: 16px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Category Section */
+        .category {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            background: #000;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            font-size: 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #000;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-badge.new {
+            background: #333;
+        }
+
+        .product-badge.promo {
+            background: #666;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .product-features li {
+            font-size: 13px;
+            color: #555;
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .price-old {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .order-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .order-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            background: #333;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: #000;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid #333;
+        }
+
+        .promo-banner h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            z-index: 1000;
+            border: 2px solid #333;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+            background: #333;
+        }
+
+        @media print {
+            .whatsapp-float {
+                display: none;
+            }
+            
+            .order-btn {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .product-card {
+                break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .category-title {
+                font-size: 22px;
+                padding: 15px 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>KATALOG PRODUK</h1>
+        <p>ALFARIZKI PERFUME GALLERY</p>
+        <div class="contact-info">
+            <a href="tel:+6281231892231">0812-3189-2231</a>
+            <a href="#"><br>Gemba, Seram Bagian Barat</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Intro -->
+        <div class="intro">
+            <h1>Selamat Datang di</H1>
+			<h1>Wangi wangi enak!</h1>
+            <p>tempat parfum berkualitas kata pelanggan</p>
+        </div>
+
+        <!-- Promo Banner 
+        <div class="promo-banner">
+            <h3>PROMO SPESIAL BULAN INI!</h3>
+            <p>Diskon hingga 20% untuk pembelian paket digital printing</p>
+        </div>
+		-->
+
+        <!-- PERBEDAAN -->
+        <div class="category" >
+            <h2 class="category-title" style="text-align:center">PERBEDAAN <br>PREMIUM & STANDAR</h2>
+            <div class="product-grid">
+                <!-- PREMIUM -->
+                <div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">PREMIUM</div>
+                        <p class="product-description">BIBIT/BIANG SEKITAR -+ 70% DAN ABSOLUTE 30%</p>
+                    </div>
+                </div>
+				
+				<!-- STANDAR -->
+                <div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">STANDAR</div>
+                        <p class="product-description">BIBIT/BIANG SEKITAR -+ 50% DAN ABSOLUTE 50%</p>
+                    </div>
+                </div>
+				
+				<div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">MURNI</div>
+                        <p class="product-description">BIBIT/BIANG 100% TANPA ABSOLUTE</p>
+                    </div>
+                </div>
+				
+			<!-- PERBEDAAN -->
+        <div class="category">
+            <h2 class="category-title" style="text-align:center" >OLES & SPRAY</h2>
+            <div class="product-grid">
+				<div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">OLES</div>
+                        <p class="product-description">CAMPURAN TIDAK MENGGUNAKAN ABSOLUTE!!!<br>NON-ALKOHOL !!!</p>
+                    </div>
+                </div>
+				<div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">SPRAY</div>
+                        <p class="product-description">MENGGUNAKAN CAMPURAN ABSOLUTE!!!</p>
+                    </div>
+                </div>
+				
+				<!--NAMA PARFUM-->
+				  <div class="category">
+            <h2 class="category-title" style="text-align:center">NAMA-NAMA PARFUM</h2>
+            <div class="product-grid">
+				<div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">CEWE</div>
+                        <p class="product-description">
+<li>ANASUI DREAM<br><li>ANASUI MELLOW YELLOW<br><li>ANGEL HEART<br><li>ARIEL<br><li>AVRIL LAVIGNE<br><li>BBW MAD ABOUT YOU<br>
+<li>BIYONCE<br><li>BUBBLE GUM<br><li>BULGARI OMNIA CRYSTAL<br><li>BULGARI OMNIA PINK SAPHIRE<br><li>BURBERRY GODDES<br><li>ELIZABETH ARDEN
+<li>ESCADA CHERRY<br><li>ESCADA PARTY<br><li>ESCADA SEXY GRAFITY<br><li>GUCCI FLORA<br><li>GUESS GIRL SUMMER<br><li>HARAZUKU<br><li>INCANTO SHINE
+<li>JAPANESSE CHERRY BLOSSOM<br><li>JESICA PARKER<br><li>JLO STILL<br><li>JOMALONE VELVET ROSE & OUD<br><li>KASTURI KIJANG (cenderung dipakai cewe)<br><li>KENZO BALI
+<li>LOVELY<br><li>LUX<br><li>MAHER ZAIN (lebih unisex tapi sering dipakai cewe)<br><li>MARCK JACOB DAISY<br><li>MELATI FULL<br><li>MELON
+<li>NAGITA SLAVINA<br><li>OLLA RAMLAN<br><li>ONE DIRECTION (biasanya parfum cewe)<br><li>ORIGINAL COFFE (unisex tapi cewe sering pakai)
+<li>PINK CHIFON<br><li>SELENA GOMES<br><li>SISSI<br><li>SOFT<br><li>STRAWBERRY<br><li>TAYLOR SWIFT<br><li>VANILLA BODY SHOP<br><li>VANILLA CAKE
+<li>VANILLA CREAMY POWDER<br><li>VICTORIA COCONUTE<br><li>VICTORIA SECRET AQUA KISS<br><li>VICTORIA SECRET AQUA KISS WATER BLOOM<br><li>VICTORIA SECRET BOMBSHELL
+<li>VICTORIA SECRET ROMAN WISH<br><li>VICTORIA SECRET SCANDALOUS<br><li>WHITE MUST BODY SHOP<br><li>YSL BLACK OPIUM<br><li>YSL MOON PARIS
+<li>ZARA RED VANILLA<br><li>ZWITSALL BABY<br><li>SCARLET<br><li>AVRIL FORBIDDEN ROSE<br><li>ESCADA MOON SPARKLE<br><li>PARIS HILTON<br><li>PRAMUGARI</p>
+                    </div>
+                </div>
+				
+				<div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">COWO</div>
+                        <p class="product-description">
+<li>AIGNER BLUE EMOTION<br><li>AIGNER BLACK<br><li>AMEER AL OUDH<br><li>AQUA DIGIO MAN<br><li>AXE ALASKA<br><li>BULGARIA AQUA<br><li>BULGARIA EXTREME
+<li>CH 212 MAN<br><li>CH 212 VIP MAN<br><li>CK ETERNITY MAN<br><li>DAVIDOF COOL WATER MAN<br><li>DIOR SAUVAGE<br><li>DIOR SAUVAGE ELIXIR
+<li>D&G LIGHT BLUE (MAN)<br><li>DUNHILL BLUE<br><li>GIORGIO ARMANY STRONGER<br><li>HUGOBOSS BOTTLE<br><li>ISSEY MIYAKE (MAN)<br><li>JAGUAR VISIONS
+<li>MARCEDES BENZ<br><li>PACCORABANE INVICTUS<br><li>PACCORABANE ONE MILLION<br><li>PACCORABANE LUCKY MILLION
+<li>POLO SPORT<br><li>RAFFI AHMAD<br><li>YSL Y<br><li>ALFRED DUNHILL
+                    </div>
+                </div>
+				
+				<div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">UNISEX</div>
+                        <p class="product-description">
+<li>ESCADA MOON SPARKLE<br><li><br><li>ORIGINAL COFFE<br><li>MELON<br><li>COKELAT<br><li>MAHER ZAIN<br><li>JOMALONE ENGLISH PEAR<br><li>KASTURI KIJANG<br><li>YSL LIBRE INTENS
+                    </div>
+                </div>
+
+                <!-- BOTOL -->
+                <div class="product-card">
+				<div class="product-info">
+				<div class="product-name">BOTOL</div>
+	<!--GAMBAR-->	
+    <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/8ml.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            8ML OLES
+        </div>
+    </div>
+</div>
+
+
+	<!--GAMBAR-->	
+	<div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+         <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/10ml.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            10ML SPRAY
+        </div>
+    </div>
+</div>
+	
+	<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/15ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            15ML SPRAY
+        </div>
+    </div>
+</div>
+
+	<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/a20ml.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            A 20ML SPRAY
+        </div>
+    </div>
+</div>
+
+		<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/b20ml-1.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            B 20ML SPRAY
+        </div>
+    </div>
+</div>
+
+	<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/d30ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            D 30ML SPRAY
+        </div>
+    </div>
+</div>
+
+	<!--GAMBAR	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/e30ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            E 30ML SPRAY
+        </div>
+    </div>
+</div>
+-->
+
+	<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/c30ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            C 30ML SPRAY
+        </div>
+    </div>
+</div>
+
+		<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/f30ML-1.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            F 30ML SPRAY
+        </div>
+    </div>
+</div>
+
+	
+		<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/A50ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            A 50ML SPRAY
+        </div>
+    </div>
+</div>
+
+	
+		<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/B50ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            B 50ML SPRAY
+        </div>
+    </div>
+</div>
+
+	
+		<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/c30ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            C 50ML SPRAY
+        </div>
+    </div>
+</div>
+
+	
+		<!--GAMBAR-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/d50ML.png" alt="Ayipoyip" loading="lazy" width="200">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            D 50ML SPRAY
+        </div>
+    </div>
+</div>
+
+</div>
+        </div>
+
+                <!-- HARGA -->
+                <div class="product-card">
+                    <div class="product-info">
+                        <div class="product-name">HARGA</div>
+						
+      <!--GAMBAR HARGA-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/HARGA1-2.jpg" alt="Ayipoyip" loading="lazy" width="300">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+           
+        </div>
+    </div>
+</div>
+
+		      <!--GAMBAR HARGA-->	
+	 <div style="text-align:center;">
+		<div style="position: relative; display: inline-block;">
+
+        <img src="https://alfarizkiteam.com/wp-content/uploads/2025/11/HARGA2-2.jpg" alt="Ayipoyip" loading="lazy" width="300">
+
+        <div style="
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px black;
+        ">
+            
+        </div>
+    </div>
+</div>
+
+
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+
+    <!-- Footer -->
+    <div class="footer">
+        <h3>ALFARIZKI TEAM</h3>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Tentang Kami</h4>
+                <p>IN SHAA ALLAH BIBIT KAMI BERKUALITAS.<br>
+				<br><h4>Pesan dari kami</h4>
+				<p>JANGAN PERCAYA DENGAN PENJUAL PARFUM <br>
+				<p>YANG CLAIM TAHAN LAMA 1 HARI BAHKAN 3 HARI,<br>
+				<p>BUKTIKAN SENDIRI!!!
+            </div>
+            <div class="footer-section">
+                <h4>Kontak Kami</h4>
+                <a href="tel:+6281231892231">📞 0812-3189-2231</a>
+                <a href="#">📍 Jl. Trans Seram, Toko Alfarizki, Desa Waimital</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ALFARIZKI TEAM. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6281231892231?text=Halo%20ALFARIZKI%20PERFUME,%20saya%20tertarik%20dengan%20produk%20Anda" class="whatsapp-float" target="_blank">
+        🔰
+    </a>
+
+    <script>
+        function order(productName) {
+            // Ganti nomor WhatsApp sesuai dengan nomor Anda
+            const phone = '6281231892231'; // Format: 62 (kode negara) + nomor tanpa 0 di depan
+            const message = `Halo ALFARIZKI PERFUME, saya tertarik untuk memesan ${productName}. Mohon informasi lebih lanjut.`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Print function (optional)
+        function printCatalog() {
+            window.print();
+        }
+    </script>
+	
+	<meta name="mobile-web-app-capable" content="yes">
+<script>
+  if (window.navigator.userAgent.includes("Android")) {
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === "hidden") {
+        document.body.innerHTML = ""; // kosongkan tampilan saat mau SS
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
